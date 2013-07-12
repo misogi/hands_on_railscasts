@@ -28,7 +28,16 @@ class SignupForm
   end
 
   def submit(params)
-    user.attributes = params.slice()
+    user.attributes = params.slice(:username, :email, :password, :passord_confirmation)
+    profile.attributes = params.slice(:twitter_name, :github_name, :bio)
+    if valid?
+      generate_token
+      user.save!
+      profile.save!
+      true
+    else
+      false
+    end
   end
 
   def subscribed
@@ -42,7 +51,7 @@ class SignupForm
   def generate_token
     begin
       user.token = SecureRandom.hex
-    end while User.exists?(token: token)
+    end while User.exists?(token: user.token)
   end
 
   def verify_unique_username
