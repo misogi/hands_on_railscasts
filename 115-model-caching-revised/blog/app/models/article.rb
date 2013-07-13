@@ -6,12 +6,20 @@ class Article < ActiveRecord::Base
 
   after_commit :flush_cache
 
+  def self.cached_published
+    # updated_at = published.maximum(:updated_at)
+    Rails.cache.fetch([name, "puglished"], expires_in: 5.minutes) do
+      published.to_a
+    end
+  end
+
   def self.cached_find(id)
-    Rails.cache.fetch([name, id], expires_in: 5.minutes){find(id)}
+    Rails.cache.fetch([name, id]){find(id)}
   end
 
   def flush_cache
     Rails.cache.delete([self.class.name, id])
+    Rails.cache.delete([self.class.name, "published"])
   end
 
   def cached_comments_count
