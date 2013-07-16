@@ -18,6 +18,10 @@ class TasksController < ApplicationController
     respond_with Task.update(params[:id], params[:task])
   end
 
+  # def update_many
+  #   params[:ids]
+  # end
+
   def destroy
     respond_with Task.destroy(params[:id])
   end
