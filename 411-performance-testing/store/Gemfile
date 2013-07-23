@@ -38,3 +38,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'ruby-prof', group: :test
+gem 'test-unit', group: :test
