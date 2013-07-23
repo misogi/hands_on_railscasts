@@ -3,7 +3,8 @@ class Article < ActiveRecord::Base
   has_many :comments
 
   def word_count
-    words = content.scan(/\\w+/)
+    words = content.scan(/\w+/)
+    binding.pry
     words.size
   end
 end
