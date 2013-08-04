@@ -1,5 +1,7 @@
 Chatter::Application.routes.draw do
-  resources :messages
+  resources :messages do
+    collection { get :events }
+  end
   root to: 'messages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
