@@ -1,6 +1,6 @@
 ryan = User.create! name: "Ryan", password: "secret"
 joe = User.create! name: "Joe", password: "secret"
-anne = User.create! name: "Anne", password: "secret"
+anne = User.create! name: "misogi", password: "secret"
 
 ryan.recipes.create! do |recipe|
   recipe.name = "Marbled Cheesecake"
